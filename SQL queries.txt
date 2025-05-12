@@ -1,0 +1,138 @@
+
+1. Top 5 Cities with Highest Total Sales
+
+query = """
+SELECT city, 
+       ROUND(SUM(sale_price), 2) AS total_sales
+FROM orders_data
+GROUP BY city
+ORDER BY total_sales DESC
+LIMIT 5;
+"""
+df1 = pd.read_sql_query(query, conn)
+
+df1
+
+....................................................
+
+2. Ship Mode Wise Order Volume & Average Order Value
+
+query = """
+SELECT ship_mode,
+       COUNT(*) AS total_orders,
+       ROUND(AVG(sale_price), 2) AS avg_order_value
+FROM orders_data
+GROUP BY ship_mode
+ORDER BY total_orders DESC;
+"""
+df2 = pd.read_sql_query(query, conn)
+
+df2
+
+..............................................
+
+3. Top Most Profitable Categorie
+
+query = """
+SELECT category,
+       ROUND(SUM(profit), 2) AS total_profit
+FROM orders_data
+GROUP BY category
+ORDER BY total_profit DESC
+LIMIT 5;
+"""
+df3 = pd.read_sql_query(query, conn)
+
+df3
+
+............................................
+
+4. Monthly Sales Trend
+
+query = """
+SELECT 
+    SUBSTR(order_date, 1, 7) AS month,
+    ROUND(SUM(sale_price), 2) AS total_sales
+FROM orders_data
+GROUP BY month
+ORDER BY month;
+"""
+df4 = pd.read_sql_query(query, conn)
+
+df4
+
+..........................................
+
+5.  Top States by Sales and Profit
+
+query2 = """
+SELECT 
+    state, 
+    ROUND(SUM(sale_price), 2) AS total_sales,
+    ROUND(SUM(profit), 2) AS total_profit
+FROM orders_data
+GROUP BY state
+ORDER BY total_sales DESC
+LIMIT 10;
+"""
+df_state = pd.read_sql_query(query2, conn)
+df_state
+......................................
+
+6. Discount Impact on Profit
+
+query = """
+SELECT 
+    ROUND(discount, 2) AS discount_rate,
+    ROUND(AVG(profit), 2) AS avg_profit
+FROM orders_data
+GROUP BY discount_rate
+ORDER BY discount_rate;
+"""
+df6 = pd.read_sql_query(query, conn)
+
+df6
+.........................................
+
+7. Total Sales vs Total Profit
+
+conn = sqlite3.connect("orders.db")
+df = pd.read_sql_query("""
+    SELECT 
+        ROUND(SUM(sale_price), 2) AS total_sales,
+        ROUND(SUM(profit), 2) AS total_profit
+    FROM orders_data;
+""", conn)
+df
+
+.........................................
+
+8.  Sub-Category Wise Average Profit
+
+query5 = """
+SELECT 
+    sub_category, 
+    ROUND(AVG(profit), 2) AS avg_profit
+FROM orders_data
+GROUP BY sub_category
+ORDER BY avg_profit DESC;
+"""
+df_sub = pd.read_sql_query(query5, conn)
+df_sub
+
+.............................................
+
+9. Top Selling Product Categories by Quantity
+
+query6 = """
+SELECT 
+    category, 
+    SUM(quantity) AS total_quantity
+FROM orders_data
+GROUP BY category
+ORDER BY total_quantity DESC;
+"""
+df_qty = pd.read_sql_query(query6, conn)
+df_qty
+
+.....................................................
