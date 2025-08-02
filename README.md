@@ -12,11 +12,17 @@ This project is a complete **retail sales data analysis pipeline** using **Pytho
 PROJECT_04_RETAIL_ORDERS/
 │
 ├── orders.csv # Original raw dataset
+
 ├── cleaned_orders.csv # Cleaned version of the dataset
+
 ├── orders.db # SQLite database created from the dataset
+
 ├── SQL_queries.txt # Collection of SQL queries used in analysis
+
 ├── Retail_Orders.ipynb # Jupyter notebook with code & visualizations
+
 ├── README.md # Project summary (this file)
+
 └── Visualizations/ # (Optional) Folder containing saved plots
 
 ---
